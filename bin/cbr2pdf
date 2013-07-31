@@ -45,7 +45,7 @@ inputs.each do |input|
     end
 
     Dir.mktmpdir do |dir|
-      puts `cd #{dir} && unrar e "#{input}"`
+      `cd #{dir} && unrar e "#{File.absolute_path(input)}"`
       Dir["#{dir}/*"].each do |f|
         next if File.directory?(f)
         print '.'
