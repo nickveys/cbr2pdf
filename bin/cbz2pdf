@@ -1,14 +1,21 @@
 #!/usr/bin/env ruby
 
+require 'Cbz2pdf'
 require 'optparse'
 require 'RMagick'
 require 'zip/zip'
 
+me = File.basename(__FILE__)
+
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "Usage: cbz2pdf -o OUTPUT_FILE INPUT_FILE [INPUT_FILE...]"
+  opts.banner = "Usage: #{me} -o OUTPUT_FILE INPUT_FILE [INPUT_FILE...]"
   opts.on('-o', '--output FILE', String, 'Output file') do |o|
     options[:output] = o
+  end
+  opts.on('-v', '--version', 'Print application version') do
+    puts "#{me} v#{Cbz2pdf::VERSION}"
+    exit
   end
 end.parse!
 
