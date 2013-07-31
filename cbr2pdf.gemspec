@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'cbz2pdf/version'
+require 'cbr2pdf/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "cbz2pdf"
-  spec.version       = Cbz2pdf::VERSION
+  spec.name          = "cbr2pdf"
+  spec.version       = Cbr2pdf::VERSION
   spec.authors       = ["Nick Veys"]
   spec.email         = ["psylence519@gmail.com"]
-  spec.description   = %q{Convert CBZ archives to PDFs of the contained images.}
-  spec.summary       = %q{CBZ to PDF converter}
+  spec.description   = %q{Convert comic book archives to PDFs of the contained images.}
+  spec.summary       = %q{CBR to PDF converter}
   spec.homepage      = ""
   spec.license       = "MIT"
 

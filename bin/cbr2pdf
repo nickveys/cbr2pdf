@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'Cbz2pdf'
+require 'Cbr2pdf'
 require 'optparse'
 require 'RMagick'
 require 'zip/zip'
@@ -14,7 +14,7 @@ OptionParser.new do |opts|
     options[:output] = o
   end
   opts.on('-v', '--version', 'Print application version') do
-    puts "#{me} v#{Cbz2pdf::VERSION}"
+    puts "#{me} v#{Cbr2pdf::VERSION}"
     exit
   end
 end.parse!

@@ -1,4 +1,4 @@
-# cbz2pdf
+# cbr2pdf
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'cbz2pdf'
+    gem 'cbr2pdf'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install cbz2pdf
+    $ gem install cbr2pdf
 
 ## Usage
 

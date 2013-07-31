@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in cbz2pdf.gemspec
+# Specify your gem's dependencies in cbr2pdf.gemspec
 gemspec
