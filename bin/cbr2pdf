@@ -72,7 +72,8 @@ inputs.each do |input|
     end
 
   else
-    puts 'DUNNO!'
+    puts "Unrecognized file format #{input}"
+    exit
   end
 
   print "\n"
