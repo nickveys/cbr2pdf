@@ -1,3 +1,46 @@
 #!/usr/bin/env ruby
 
-puts 'Hello'
+require 'optparse'
+require 'RMagick'
+require 'zip/zip'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: cbz2pdf -o OUTPUT_FILE INPUT_FILE [INPUT_FILE...]"
+  opts.on('-o', '--output FILE', String, 'Output file') do |o|
+    options[:output] = o
+  end
+end.parse!
+
+inputs = ARGV
+
+# ensure output file has .pdf on it
+outfile = options[:output]
+outfile = "#{outfile}.pdf" unless /\.[pP][dD][fF]/.match(outfile)
+
+list = Magick::ImageList.new
+
+inputs.each do |input|
+
+  print "Reading #{File.basename(input)}"
+
+  Zip::ZipFile.open(input) do |zf|
+    zf.each do |entry|
+      next if entry.ftype == :directory
+      print '.'
+      begin
+        list << Magick::Image.from_blob(zf.read(entry))[0]
+      rescue Magick::ImageMagickError => e
+        #p e
+      end
+    end
+  end
+
+  print "\n"
+
+end
+
+outfile = "#{outfile}.pdf" unless /\.[pP][dD][fF]/.match(outfile)
+
+puts "Writing '#{outfile}' (#{list.length} pages)"
+list.write(outfile)
