@@ -1,4 +1,4 @@
-# Cbz2pdf
+# cbz2pdf
 
 TODO: Write a gem description
 
