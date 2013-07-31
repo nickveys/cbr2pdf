@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Cbz2pdf::VERSION
   spec.authors       = ["Nick Veys"]
   spec.email         = ["psylence519@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Convert CBZ archives to PDFs of the contained images.}
+  spec.summary       = %q{CBZ to PDF converter}
   spec.homepage      = ""
   spec.license       = "MIT"
 
