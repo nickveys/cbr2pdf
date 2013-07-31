@@ -18,6 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency 'rmagick', '~> 2.13'
+  spec.add_dependency 'zip', '~> 2.0'
+
   spec.add_development_dependency 'awesome_print'
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'ci_reporter', '= 1.8.4'
