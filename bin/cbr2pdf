@@ -8,7 +8,7 @@ require 'zip/zip'
 me = File.basename(__FILE__)
 
 options = {}
-OptionParser.new do |opts|
+optparse = OptionParser.new do |opts|
   opts.banner = "Usage: #{me} -o OUTPUT_FILE INPUT_FILE [INPUT_FILE...]"
   opts.on('-o', '--output FILE', String, 'Output file') do |o|
     options[:output] = o
@@ -18,6 +18,11 @@ OptionParser.new do |opts|
     exit
   end
 end.parse!
+
+if options[:output].nil?
+  puts 'Output file not specified'
+  exit
+end
 
 inputs = ARGV
 
@@ -31,16 +36,43 @@ inputs.each do |input|
 
   print "Reading #{File.basename(input)}"
 
-  Zip::ZipFile.open(input) do |zf|
-    zf.each do |entry|
-      next if entry.ftype == :directory
-      print '.'
-      begin
-        list << Magick::Image.from_blob(zf.read(entry))[0]
-      rescue Magick::ImageMagickError => e
-        #p e
+  case File.extname(input)
+  when '.cbr'
+
+    if `which unrar`.empty?
+      puts 'Unable to locate unrar utility'
+      exit
+    end
+
+    Dir.mktmpdir do |dir|
+      puts `cd #{dir} && unrar e "#{input}"`
+      Dir["#{dir}/*"].each do |f|
+        next if File.directory?(f)
+        print '.'
+        begin
+          list << Magick::Image.read(f)[0]
+        rescue Magick::ImageMagickError => e
+          #p e
+        end
       end
     end
+
+  when '.cbz'
+
+    Zip::ZipFile.open(input) do |zf|
+      zf.each do |entry|
+        next if entry.ftype == :directory
+        print '.'
+        begin
+          list << Magick::Image.from_blob(zf.read(entry))[0]
+        rescue Magick::ImageMagickError => e
+          #p e
+        end
+      end
+    end
+
+  else
+    puts 'DUNNO!'
   end
 
   print "\n"
