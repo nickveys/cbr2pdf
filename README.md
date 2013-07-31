@@ -1,6 +1,8 @@
 # cbr2pdf
 
-TODO: Write a gem description
+Ruby gem to convert [Comic Book Archive](https://en.wikipedia.org/wiki/Comic_book_archive) files to PDFs.
+
+Current supports CBR and CBZ archives.  
 
 ## Installation
 
@@ -18,7 +20,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+General form:
+
+    cbr2pdf -o OUTPUT_FILE INPUT_FILE [INPUT_FILE...]
+
+For example, to convert a single CBR to a PDF:
+
+    cbr2pdf -o mybook.pdf mybook.cbr
+
+Or, to combine several CBRs into a single PDF:
+
+    cbr2pdf -o mytpb.pdf book1.cbr book2.cbz book3.cbr
+
+CBR and CBZ archives can be mixed.  All pages will be added sequentially by name, and books will be added in the order they are specified.
+
+## Requirements
+
+Requires `unrar` application available on command line to handle CBR files.
 
 ## Contributing
 
