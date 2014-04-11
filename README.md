@@ -2,7 +2,7 @@
 
 Ruby gem to convert [Comic Book Archive](https://en.wikipedia.org/wiki/Comic_book_archive) files to PDFs.
 
-Current supports CBR and CBZ archives.  
+Currently supports CBR and CBZ archives.  
 
 ## Installation
 
